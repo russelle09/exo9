@@ -27,7 +27,7 @@ NKENTSEU_DEFINE_APP_DATA(([]() {
 	NkAppData d{};
 	d.appName = "NkHarmonyDemo";
 	d.appVersion = "0.1.0";
-	return d;
+	d.appDescription = "Nkentseu HarmonyOS demo";
 })());
 
 int nkmain(const NkEntryState &state) {
@@ -44,11 +44,7 @@ int nkmain(const NkEntryState &state) {
 	}
 	logger.Infof("nkmain: window created id=%llu", ()window.GetId());
 
-<<<<<<< HEAD
 	auto &ev = Nkcore();
-=======
-	auto &ev = NkCore();
->>>>>>> ouf
 
 	ev.AddEventCallback<NkWindowCloseEvent>([&](NkWindowCloseEvent *) {
 		logger.Infof("nkmain: close requested");
