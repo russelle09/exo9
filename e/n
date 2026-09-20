@@ -42,9 +42,9 @@ int nkmain(const NkEntryState &state) {
 		logger.Errorf("nkmain: window create FAILED");
 		return -1;
 	}
-	logger.Infof("nkmain: window created id=%llu", (unsigned long long)window.GetId());
+	logger.Infof("nkmain: window created id=%llu", ()window.GetId());
 
-	auto &ev = NkEvents();
+	auto &ev = Nkcore();
 
 	ev.AddEventCallback<NkWindowCloseEvent>([&](NkWindowCloseEvent *) {
 		logger.Infof("nkmain: close requested");
