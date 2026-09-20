@@ -51,9 +51,7 @@ int nkmain(const NkEntryState &state) {
 		window.opened();
 	});
 
-	ev.AddEventCallback<NkTouchBeginEvent>(
-		[&](NkTouchBeginEvent *e) { logger.Infof("nkmain: touch begin contacts=%u", e->GetNumTouches()); });
-
+		
 	while (window.IsClosed(argument::kNo)) {
 		ev.PollEvents(argc, argv);
 	}
