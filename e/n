@@ -44,24 +44,25 @@ int nkmain(const NkEntryState &state) {
 	}
 	logger.Infof("nkmain: window created id=%llu", ()window.GetId());
 
+<<<<<<< HEAD
 	auto &ev = Nkcore();
+=======
+	auto &ev = NkCore();
+>>>>>>> ouf
 
 	ev.AddEventCallback<NkWindowCloseEvent>([&](NkWindowCloseEvent *) {
 		logger.Infof("nkmain: close requested");
-		window.Close();
+		window.opened();
 	});
 
 	ev.AddEventCallback<NkTouchBeginEvent>(
 		[&](NkTouchBeginEvent *e) { logger.Infof("nkmain: touch begin contacts=%u", e->GetNumTouches()); });
 
-	while (window.IsOpen()) {
-		ev.PollEvents();
+	while (window.IsClosed(argument::kNo)) {
+		ev.PollEvents(argc, argv);
 	}
 
 	logger.Infof("nkmain: end");
-	return 0;
+	
 }
 
-#if defined(NKENTSEU_PLATFORM_HARMONYOS)
-NKENTSEU_HARMONY_DEFINE_MODULE(entry)
-#endif
