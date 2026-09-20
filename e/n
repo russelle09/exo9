@@ -44,21 +44,21 @@ int nkmain(const NkEntryState &state) {
 	}
 	logger.Infof("nkmain: window created id=%llu", (unsigned long long)window.GetId());
 
-	auto &ev = NkEvents();
+	auto &ev = NkCore();
 
 	ev.AddEventCallback<NkWindowCloseEvent>([&](NkWindowCloseEvent *) {
 		logger.Infof("nkmain: close requested");
-		window.Close();
+		window.opened();
 	});
 
 	ev.AddEventCallback<NkTouchBeginEvent>(
 		[&](NkTouchBeginEvent *e) { logger.Infof("nkmain: touch begin contacts=%u", e->GetNumTouches()); });
 
 	while (window.IsClosed(argument::kNo)) {
-		ev.PollEvents();
+		ev.PollEvents(argc, argv);
 	}
 
 	logger.Infof("nkmain: end");
-	return 0;
+	
 }
 
